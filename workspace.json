@@ -1,5 +1,19 @@
 {
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
-  "projects": {}
+  "projects": {
+    "core-model": "libs/core/model",
+    "core-services-api-service": "libs/core/services/api-service",
+    "core-theme": "libs/core/theme",
+    "food-shop": "apps/food-shop",
+    "food-shop-backoffice": "apps/food-shop-backoffice",
+    "food-shop-cart-cart-util": "libs/food-shop/cart/cart-util",
+    "food-shop-cart-cart-widget": "libs/food-shop/cart/cart-widget",
+    "food-shop-category-category-summary-card": "libs/food-shop/category/category-summary-card",
+    "food-shop-favorite-favorite-widget": "libs/food-shop/favorite/favorite-widget",
+    "food-shop-product-product-details": "libs/food-shop/product/product-details",
+    "food-shop-product-product-list": "libs/food-shop/product/product-list",
+    "shared-components-dom-portal": "libs/shared/components/dom-portal",
+    "shared-components-input-number-button": "libs/shared/components/input-number-button"
+  }
 }
