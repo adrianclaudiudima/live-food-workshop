@@ -7,15 +7,21 @@
     "core-theme": "libs/core/theme",
     "food-shop": "apps/food-shop",
     "food-shop-backoffice": "apps/food-shop-backoffice",
+    "food-shop-backoffice-orders-order-status-table": "libs/food-shop-backoffice/orders/order-status-table",
+    "food-shop-backoffice-orders-stats": "libs/food-shop-backoffice/orders/stats",
     "food-shop-cart-cart-util": "libs/food-shop/cart/cart-util",
     "food-shop-cart-cart-widget": "libs/food-shop/cart/cart-widget",
     "food-shop-category-category-summary-card": "libs/food-shop/category/category-summary-card",
     "food-shop-checkout-checkout-details": "libs/food-shop/checkout/checkout-details",
     "food-shop-favorite-favorite-widget": "libs/food-shop/favorite/favorite-widget",
+    "food-shop-orders-order-card-list": "libs/food-shop/orders/order-card-list",
+    "food-shop-orders-order-details": "libs/food-shop/orders/order-details",
+    "food-shop-orders-orders-widget": "libs/food-shop/orders/orders-widget",
     "food-shop-product-product-details": "libs/food-shop/product/product-details",
     "food-shop-product-product-list": "libs/food-shop/product/product-list",
     "shared-components-dom-portal": "libs/shared/components/dom-portal",
     "shared-components-input-number-button": "libs/shared/components/input-number-button",
-    "shared-components-input-radio-card": "libs/shared/components/input-radio-card"
+    "shared-components-input-radio-card": "libs/shared/components/input-radio-card",
+    "shared-pipes": "libs/shared/pipes"
   }
 }

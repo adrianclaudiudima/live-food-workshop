@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CartStateService} from "../../services/cart-state.service";
-import {BehaviorSubject, combineLatest, map, Observable, Subject, withLatestFrom} from "rxjs";
+import {BehaviorSubject, combineLatest, map, Observable, Subject, take, withLatestFrom} from "rxjs";
 import {Order, OrderPaymentSummaryExtraFee, ProductOrder} from "@livesession-food-workshop-angular/core/model";
 import {InputRadioCardModel} from "@livesession-food-workshop-angular/shared/components/input-radio-card";
 import {
@@ -8,6 +8,7 @@ import {
   mapPaymentFeeFromCardData
 } from "@livesession-food-workshop-angular/food-shop/cart/cart-util";
 import {CheckoutStateService} from "../../services/checkout-state.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'livesession-food-workshop-angular-checkout',
@@ -15,7 +16,7 @@ import {CheckoutStateService} from "../../services/checkout-state.service";
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor(private cartState: CartStateService, private checkoutService: CheckoutStateService) {
+  constructor(private cartState: CartStateService, private checkoutService: CheckoutStateService, private router: Router) {
     this.checkoutService.checkIfTaxesChanged();
     this.checkoutData$ = combineLatest([
       this.checkoutService.checkoutSummary$,
@@ -47,9 +48,14 @@ export class CheckoutComponent implements OnInit {
   }
 
 
-  handleCreateOrder($event: Order) {
-
+  handleCreateOrder(order: Order) {
+    this.checkoutService.createOrder(order).pipe(
+      take(1)
+    ).subscribe(() => {
+      this.router.navigate(["/orders"]);
+    });
   }
+
 
   handlePaymentMethodChange(cardData: InputRadioCardModel[]) {
     this.feeSubject.next(mapPaymentFeeFromCardData(cardData));

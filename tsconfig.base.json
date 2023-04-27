@@ -24,6 +24,12 @@
       "@livesession-food-workshop-angular/core/theme": [
         "libs/core/theme/src/index.ts"
       ],
+      "@livesession-food-workshop-angular/food-shop-backoffice/orders/order-status-table": [
+        "libs/food-shop-backoffice/orders/order-status-table/src/index.ts"
+      ],
+      "@livesession-food-workshop-angular/food-shop-backoffice/orders/stats": [
+        "libs/food-shop-backoffice/orders/stats/src/index.ts"
+      ],
       "@livesession-food-workshop-angular/food-shop/cart/cart-util": [
         "libs/food-shop/cart/cart-util/src/index.ts"
       ],
@@ -38,6 +44,15 @@
       ],
       "@livesession-food-workshop-angular/food-shop/favorite/favorite-widget": [
         "libs/food-shop/favorite/favorite-widget/src/index.ts"
+      ],
+      "@livesession-food-workshop-angular/food-shop/orders/order-card-list": [
+        "libs/food-shop/orders/order-card-list/src/index.ts"
+      ],
+      "@livesession-food-workshop-angular/food-shop/orders/order-details": [
+        "libs/food-shop/orders/order-details/src/index.ts"
+      ],
+      "@livesession-food-workshop-angular/food-shop/orders/orders-widget": [
+        "libs/food-shop/orders/orders-widget/src/index.ts"
       ],
       "@livesession-food-workshop-angular/food-shop/product/product-details": [
         "libs/food-shop/product/product-details/src/index.ts"
@@ -56,6 +71,9 @@
       ],
       "@livesession-food-workshop-angular/shared/components/input-radio-card": [
         "libs/shared/components/input-radio-card/src/index.ts"
+      ],
+      "@livesession-food-workshop-angular/shared/pipes": [
+        "libs/shared/pipes/src/index.ts"
       ]
     }
   },

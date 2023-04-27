@@ -13,8 +13,14 @@ export class CartStateService {
 
 
   constructor(private stateSerializerService: StateSerializerService) {
+    const savedProducts = stateSerializerService.restoreState();
+    if (savedProducts && savedProducts.cartProducts && savedProducts.cartProducts.length > 0) {
+      // todo: add dependency to products service and maybe filter out products which are
+      // todo: no longer available
+      this.productsInCart = savedProducts.cartProducts;
+      this.productsInCartSubject.next(this.productsInCart);
+    }
   }
-
 
   public addMultipleProductsToCart(productOrders: Array<ProductOrder>) {
     productOrders.forEach(p => {
@@ -61,5 +67,9 @@ export class CartStateService {
     this.pushSubjectAndStoreToLocalStorage(this.productsInCart);
   }
 
+  removeAllProductsFromCart() {
+    this.productsInCart = [];
+    this.pushSubjectAndStoreToLocalStorage(this.productsInCart);
+  }
 
 }

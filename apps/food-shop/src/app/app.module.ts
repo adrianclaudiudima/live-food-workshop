@@ -30,6 +30,11 @@ import {CheckoutStateService} from "./services/checkout-state.service";
 import {Tax, TAX_TOKEN, TAX_TOKEN_OBS} from "@livesession-food-workshop-angular/core/model";
 import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "../environments/environment";
+import {OrdersStateService} from "./services/orders-state.service";
+import {YourOrderDetailsComponent} from "./componenets/your-order-details/your-order-details.component";
+import {YourOrdersComponent} from "./componenets/your-orders/your-orders.component";
+import {OrderCardListModule} from "@livesession-food-workshop-angular/food-shop/orders/order-card-list";
+import {FoodShopOrdersOrderDetailsModule} from "@livesession-food-workshop-angular/food-shop/orders/order-details";
 
 @NgModule({
   declarations: [
@@ -37,7 +42,10 @@ import {environment} from "../environments/environment";
     ShopWidgetComponent,
     ShopComponent,
     CheckoutComponent,
-    OverlayProductDetailsDialog],
+    OverlayProductDetailsDialog,
+    YourOrderDetailsComponent,
+    YourOrdersComponent
+  ],
   imports: [
     BrowserAnimationsModule,
     DomPortalModule,
@@ -52,6 +60,8 @@ import {environment} from "../environments/environment";
     FoodShopProductProductDetailsModule,
     ApiServiceModule,
     CheckoutDetailsModule,
+    OrderCardListModule,
+    FoodShopOrdersOrderDetailsModule,
   ],
   providers: [
     {
@@ -65,6 +75,7 @@ import {environment} from "../environments/environment";
     FavoriteStateService,
     CartStateService,
     CheckoutStateService,
+    OrdersStateService,
     {
       provide: TAX_TOKEN,
       deps: [TaxApiService],
