@@ -1,0 +1,17 @@
+<ng-container *ngIf="favoriteProducts$ | async as favoriteProducts">
+  <app-favorite-widget
+    [favoriteProducts]="favoriteProducts"
+    (addProductToCart)="addProductToCart($event)"
+    (addAllProductsToCart)="addAllProductsToCart(favoriteProducts)"
+    (removeProductFromFavorite)="removeProductFromFavorite($event)">
+  </app-favorite-widget>
+</ng-container>
+
+<ng-container *ngIf="cartProducts$ | async as cartProducts">
+  <app-cart-widget
+    (removeProductFromCart)="removeProductFromCart($event)"
+    (updateProductQuantity)="updateQuantity($event)"
+    [cartProducts]="cartProducts.products"
+    [cartQuantity]="cartProducts.totalQuantity">
+  </app-cart-widget>
+</ng-container>

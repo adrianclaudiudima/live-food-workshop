@@ -33,6 +33,9 @@
       "@livesession-food-workshop-angular/food-shop/category/category-summary-card": [
         "libs/food-shop/category/category-summary-card/src/index.ts"
       ],
+      "@livesession-food-workshop-angular/food-shop/checkout/checkout-details": [
+        "libs/food-shop/checkout/checkout-details/src/index.ts"
+      ],
       "@livesession-food-workshop-angular/food-shop/favorite/favorite-widget": [
         "libs/food-shop/favorite/favorite-widget/src/index.ts"
       ],
@@ -50,6 +53,9 @@
       ],
       "@livesession-food-workshop-angular/shared/components/input-number-button": [
         "libs/shared/components/input-number-button/src/index.ts"
+      ],
+      "@livesession-food-workshop-angular/shared/components/input-radio-card": [
+        "libs/shared/components/input-radio-card/src/index.ts"
       ]
     }
   },

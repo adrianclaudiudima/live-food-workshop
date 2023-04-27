@@ -10,10 +10,12 @@
     "food-shop-cart-cart-util": "libs/food-shop/cart/cart-util",
     "food-shop-cart-cart-widget": "libs/food-shop/cart/cart-widget",
     "food-shop-category-category-summary-card": "libs/food-shop/category/category-summary-card",
+    "food-shop-checkout-checkout-details": "libs/food-shop/checkout/checkout-details",
     "food-shop-favorite-favorite-widget": "libs/food-shop/favorite/favorite-widget",
     "food-shop-product-product-details": "libs/food-shop/product/product-details",
     "food-shop-product-product-list": "libs/food-shop/product/product-list",
     "shared-components-dom-portal": "libs/shared/components/dom-portal",
-    "shared-components-input-number-button": "libs/shared/components/input-number-button"
+    "shared-components-input-number-button": "libs/shared/components/input-number-button",
+    "shared-components-input-radio-card": "libs/shared/components/input-radio-card"
   }
 }

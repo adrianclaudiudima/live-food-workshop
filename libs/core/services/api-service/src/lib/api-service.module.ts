@@ -5,10 +5,12 @@ import {CategoriesApiService} from './services/categories-api.service';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {ProductsApiService} from './services/products-api.service';
+import {TaxApiService} from "./services/tax-api.service";
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
   providers: [
+    TaxApiService,
     ProductsApiService,
     CategoriesApiService,
     StateSerializerService,

@@ -5,3 +5,4 @@ export * from './lib/entities/request.model';
 export * from './lib/entities/order-tax';
 export * from './lib/table/pagination.model';
 export * from './lib/entities/category.model';
+export * from './lib/tokens/tax.model';

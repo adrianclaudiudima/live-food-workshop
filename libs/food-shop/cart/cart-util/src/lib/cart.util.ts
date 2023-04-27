@@ -7,9 +7,7 @@ import {
 } from "@livesession-food-workshop-angular/core/model";
 
 
-export const mapPaymentFeeFromCardData = (
-  cardData: Array<{ selected: boolean; value: number }>
-): number => {
+export const mapPaymentFeeFromCardData = (cardData: Array<{ selected: boolean; value: number }>): number => {
   const selected = cardData.find((c) => c.selected);
   return selected ? selected.value : 0;
 };

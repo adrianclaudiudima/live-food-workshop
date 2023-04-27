@@ -2,6 +2,22 @@
   <h1 class="text-gray-800 text-3xl font-extrabold tracking-tight sm:text-4xl">Welcome to eat land</h1>
 </app-dom-portal>
 <ng-container *ngIf="shopState | async as productsState">
+
+  <ng-container
+    *ngIf="productsState.products.requestStatus.status === 'PENDING' || productsState.categories.requestStatus.status === 'PENDING' ">
+    <div class="flex flex-row justify-center mt-32 w-full">
+      <div>Loading please wait ...</div>
+    </div>
+  </ng-container>
+
+  <ng-container
+    *ngIf="productsState.products.requestStatus.status === 'ERROR' || productsState.categories.requestStatus.status === 'ERROR' ">
+    <div class="flex flex-col items-center mt-32 w-full">
+      <div class="mb-3">Ceva nu a mers bine. Te rugam sa incerci mai tarziu</div>
+      <button mat-stroked-button color="accent" (click)="retryLoadingProducts()">Reincearca</button>
+    </div>
+  </ng-container>
+
   <ng-container *ngIf='productsState.products.requestStatus.status === "COMPLETED"'>
 
 
@@ -13,8 +29,8 @@
             (categorySelected)="filterProducts($event)"
             [categorySummaries]="productsState.categories.domain"></app-category-summary-card>
         </ng-container>
-
       </div>
+
       <div class="overflow-y-scroll">
         <app-product-list
           [products]="productsState.products.domain"

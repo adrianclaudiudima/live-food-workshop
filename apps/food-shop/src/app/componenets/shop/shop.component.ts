@@ -4,29 +4,31 @@ import {MatSnackBar, MatSnackBarRef} from "@angular/material/snack-bar";
 import {CategorySummary, Product} from "@livesession-food-workshop-angular/core/model";
 import {MatDialog} from "@angular/material/dialog";
 import {OverlayProductDetailsDialog} from "../product-details-overlay/product-details-overlay.component";
-import {ProductsStateService} from "../../services/products-state.service";
+import {ProductsState, ProductsStateService} from "../../services/products-state.service";
+import {ShopFacade} from "./shop.facade";
+import {CartStateService} from "../../services/cart-state.service";
 
 @Component({
   selector: 'app-shop',
-  templateUrl: 'shop.component.html'
+  templateUrl: 'shop.component.html',
+  providers: [ShopFacade]
 })
 export class ShopComponent {
 
-  shopState!: Observable<any>;
-
+  shopState!: Observable<ProductsState>;
   matSnackbarRef: MatSnackBarRef<any> | undefined;
 
   @ViewChild("templatePortalContent") templatePortalContent!: TemplateRef<any>;
 
-
   constructor(
     private productsStateService: ProductsStateService,
-    private dialog: MatDialog, private snackBar: MatSnackBar
+    private dialog: MatDialog, private snackBar: MatSnackBar,
+    private shopFacade: ShopFacade,
+    private cartStateService: CartStateService
   ) {
-    productsStateService.loadAllProducts();
-    productsStateService.loadAllCategories();
-    this.shopState = this.productsStateService.productsState$;
 
+    this.shopState = this.productsStateService.productsState$;
+    this.shopFacade.loadProductsAndCategories();
   }
 
   showProductDetails(product: Product): void {
@@ -43,7 +45,7 @@ export class ShopComponent {
   }
 
   handleAddToBag(product: Product) {
-    // this.cartStateService.addProductToCart({product, quantity: 1});
+    this.cartStateService.addProductToCart({product, quantity: 1});
     this.matSnackbarRef = this.snackBar.openFromTemplate(this.templatePortalContent,
       {
         horizontalPosition: "end",
@@ -55,7 +57,15 @@ export class ShopComponent {
   }
 
   filterProducts(categorySummary: CategorySummary | undefined) {
-    // this.productsStateService.filterProducts(categorySummary);
+    this.productsStateService.filterProducts(categorySummary);
+  }
+
+  retryLoadingProducts() {
+    this.shopFacade.loadProductsAndCategories();
   }
 
 }
+
+
+
+

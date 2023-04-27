@@ -1,4 +1,8 @@
 {
+  "tax": {
+    "vatRatePercentage": 20,
+    "serviceChargePercentage": 20
+  },
   "product": [
     {
       "id": 1,

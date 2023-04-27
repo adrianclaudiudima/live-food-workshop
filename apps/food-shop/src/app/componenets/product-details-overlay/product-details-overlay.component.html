@@ -1,7 +1,7 @@
-<ng-container *ngIf="{value: isFavoriteProduct$ | async} as favorite">
+<ng-container *ngIf="{value: isFavoriteProduct$ | async} as whateverWeWant">
   <app-product-details
     [product]="product"
-    [favorite]="favorite.value"
+    [favorite]="whateverWeWant.value"
     [quantity]="numberOfServing"
     (closeEvent)="closeDialog()"
     (addToBagEvent)="handleAddToBag($event)"

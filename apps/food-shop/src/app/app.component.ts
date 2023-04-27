@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'food-shop';
 
   constructor(private _httpClient: HttpClient) {
-    _httpClient.get('http://localhost:4200/api/product').subscribe(v => console.log(v))
+    _httpClient.get('http://localhost:4200/api/product').subscribe()
   }
 }

@@ -1,8 +1,10 @@
 import {Component, Inject, TemplateRef, ViewChild} from "@angular/core";
-import {Observable} from "rxjs";
+import {Observable, Subject, take} from "rxjs";
 import {MatSnackBar, MatSnackBarRef} from "@angular/material/snack-bar";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Product} from "@livesession-food-workshop-angular/core/model";
+import {Product, Tax, TAX_TOKEN_OBS} from "@livesession-food-workshop-angular/core/model";
+import {FavoriteStateService} from "../../services/favorite-state.service";
+import {CartStateService} from "../../services/cart-state.service";
 
 @Component({
   selector: "app-overlay-product-details",
@@ -19,17 +21,18 @@ export class OverlayProductDetailsDialog {
   @ViewChild("templatePortalContent") templatePortalContent!: TemplateRef<any>;
 
   constructor(
+    @Inject(TAX_TOKEN_OBS) taxToken: Subject<Tax>,
     public dialogRef: MatDialogRef<OverlayProductDetailsDialog>,
     @Inject(MAT_DIALOG_DATA) public data: { product: Product; numberOfServings: number },
     private snackBar: MatSnackBar,
-    // private cartStateService: CartStateService,
-    // private favoriteStateService: FavoriteStateService
+    private cartStateService: CartStateService,
+    private favoriteStateService: FavoriteStateService
   ) {
     this.product = data.product;
     this.numberOfServing = data.numberOfServings;
-    /*this.isFavoriteProduct$ = favoriteStateService.isFavoriteProduct(this.product).pipe(
+    this.isFavoriteProduct$ = favoriteStateService.isFavoriteProduct(this.product).pipe(
       take(1)
-    );*/
+    );
   }
 
   closeDialog() {
@@ -38,7 +41,7 @@ export class OverlayProductDetailsDialog {
 
 
   handleAddToBag(item: { product: Product; quantity: number }) {
-    // this.cartStateService.addProductToCart(item);
+    this.cartStateService.addProductToCart(item);
     this.dialogRef.close();
     this.matSnackbarRef = this.snackBar.openFromTemplate(this.templatePortalContent,
       {
@@ -51,6 +54,6 @@ export class OverlayProductDetailsDialog {
   }
 
   handleFavoriteChanged(payload: { product: Product; favorite: boolean }) {
-    // this.favoriteStateService.updateFavoriteState(payload);
+    this.favoriteStateService.updateFavoriteState(payload);
   }
 }

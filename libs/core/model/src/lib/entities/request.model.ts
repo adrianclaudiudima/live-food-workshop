@@ -5,3 +5,4 @@ export interface RequestStatus {
     message?: string;
   };
 }
+
