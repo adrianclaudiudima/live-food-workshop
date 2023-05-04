@@ -1,25 +1,21 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output,
-  TemplateRef,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import {Component, EventEmitter, Injector, Input, OnDestroy, Output, TemplateRef, ViewChild, ViewContainerRef,} from '@angular/core';
 import {Overlay, OverlayRef} from '@angular/cdk/overlay';
 import {MatButton} from '@angular/material/button';
 import {TemplatePortal} from '@angular/cdk/portal';
 import {Subject, take, takeUntil} from 'rxjs';
 import {Router} from '@angular/router';
 import {Product, ProductOrder} from "@livesession-food-workshop-angular/core/model";
+import {CART_OVERLAY_REF_TOKEN, CART_TITLE_TOKEN} from "../../token/cart.token";
 
 @Component({
   selector: 'app-cart-widget',
   templateUrl: 'cart-widget.component.html',
 })
 export class CartWidgetComponent implements OnDestroy {
+
+  @Input()
+  title = '';
+
   @Input()
   cartProducts: Array<ProductOrder> = [];
 
@@ -41,7 +37,8 @@ export class CartWidgetComponent implements OnDestroy {
   constructor(
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef,
-    private router: Router
+    private router: Router,
+    private injector: Injector
   ) {
   }
 
@@ -65,8 +62,22 @@ export class CartWidgetComponent implements OnDestroy {
       hasBackdrop: true,
       disposeOnNavigation: true,
     });
+
+    const customInjectorContext: Injector = Injector.create({
+      providers: [
+        {
+          provide: CART_TITLE_TOKEN,
+          useValue: this.title
+        },
+        {
+          provide: CART_OVERLAY_REF_TOKEN,
+          useValue: this.overlayRef
+        }],
+      parent: this.injector
+    })
+
     this.overlayRef.attach(
-      new TemplatePortal(this.templatePortalContent, this.viewContainerRef)
+      new TemplatePortal(this.templatePortalContent, this.viewContainerRef, null, customInjectorContext)
     );
     this.overlayRef
       .backdropClick()

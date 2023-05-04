@@ -1,11 +1,19 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 import {Product, ProductOrder} from "@livesession-food-workshop-angular/core/model";
+import {CART_OVERLAY_REF_TOKEN, CART_TITLE_TOKEN} from "../../token/cart.token";
+import {OverlayRef} from "@angular/cdk/overlay";
 
 @Component({
   selector: 'app-cart-list',
   templateUrl: 'cart-list.component.html',
 })
 export class CartListComponent {
+
+  constructor(
+    @Inject(CART_TITLE_TOKEN) public cartTitle: string,
+    @Inject(CART_OVERLAY_REF_TOKEN) public overlayRef: OverlayRef) {
+  }
+
   @Input()
   products: Array<ProductOrder> = [];
 
@@ -38,5 +46,9 @@ export class CartListComponent {
 
   onNavigateToCheckout() {
     this.navigateToCheckout.emit(true);
+  }
+
+  disposeOverlay() {
+    this.overlayRef.dispose();
   }
 }

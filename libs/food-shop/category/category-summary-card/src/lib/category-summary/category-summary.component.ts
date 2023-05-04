@@ -8,6 +8,7 @@ import {CategorySummary} from "@livesession-food-workshop-angular/core/model";
 })
 export class CategorySummaryCardComponent {
 
+  @Input()
   selected = 0;
 
   @Input()

@@ -1,7 +1,16 @@
 <ng-container *ngIf='products.length > 0 else missingProducts'>
   <div class='bg-gray-800 w-full h-full rounded-lg p-1.5'
        style='display: grid;grid-template-rows: 50px 1fr 60px;'>
-    <div class='text-lg font-bold text-white px-2.5 py-2'>Shopping cart</div>
+    <div class='text-lg font-bold text-white px-2.5 py-2 flex flex-row items-center justify-between'>
+      <div>
+        <ng-container *ngIf="cartTitle else defaultTitle">{{cartTitle}}</ng-container>
+        <ng-template #defaultTitle>Shopping cart</ng-template>
+      </div>
+
+      <button mat-icon-button (click)="disposeOverlay()">
+        <mat-icon svgIcon="close" class="text-white"></mat-icon>
+      </button>
+    </div>
     <div class='w-full px-2.5 overflow-y-scroll'>
       <ul class='divide-y divide-gray-700' role='list'>
         <li *ngFor='let item of products' class='py-2.5 flex items-center'>

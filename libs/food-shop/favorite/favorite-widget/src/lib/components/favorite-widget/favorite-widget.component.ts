@@ -1,13 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output,
-  TemplateRef,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import {Component, EventEmitter, Injector, Input, OnDestroy, Output, TemplateRef, ViewChild, ViewContainerRef,} from '@angular/core';
 import {Subject, take, takeUntil} from 'rxjs';
 import {MatButton} from '@angular/material/button';
 import {Overlay, OverlayRef} from '@angular/cdk/overlay';
@@ -43,6 +34,7 @@ export class FavoriteWidgetComponent implements OnDestroy {
   private disposeObservables: Subject<any> = new Subject();
 
   constructor(
+    private parentInjector: Injector,
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef,
     private router: Router
@@ -70,6 +62,8 @@ export class FavoriteWidgetComponent implements OnDestroy {
       hasBackdrop: true,
       disposeOnNavigation: true,
     });
+
+
     this.overlayRef.attach(
       new TemplatePortal(this.templatePortalContent, this.viewContainerRef)
     );

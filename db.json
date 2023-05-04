@@ -1,7 +1,7 @@
 {
   "tax": {
-    "vatRatePercentage": 20,
-    "serviceChargePercentage": 20
+    "vatRatePercentage": 10,
+    "serviceChargePercentage": 10
   },
   "product": [
     {
